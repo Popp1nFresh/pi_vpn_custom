@@ -43,8 +43,9 @@ PIVPN_DEPS=(openvpn git tar wget grep iptables-persistent dnsutils expect whipta
 pivpnGitUrl="https://github.com/Popp1nFresh/pi_vpn_custom.git"
 pivpnFilesDir="/etc/.pivpn"
 easyrsaVer="3.0.6"
+easyrsaVerFileName="unix-${easyrsaVer}"
 # https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.6/EasyRSA-unix-v3.0.6.tgz --> notice the '-unix-' which is new in this version
-easyrsaRel="https://github.com/OpenVPN/easy-rsa/releases/download/v${easyrsaVer}/EasyRSA-unix-${easyrsaVer}.tgz"
+easyrsaRel="https://github.com/OpenVPN/easy-rsa/releases/download/v${easyrsaVer}/EasyRSA-${easyrsaVerFileName}.tgz"
 
 # Raspbian's unattended-upgrades package downloads Debian's config, so this is the link for the proper config 
 UNATTUPG_CONFIG="https://github.com/mvo5/unattended-upgrades/archive/1.9.tar.gz"
@@ -773,6 +774,8 @@ confOpenVPN() {
     fi
 
     # Get the PiVPN easy-rsa
+    # make the directory tar will use
+    $SUDO mkdir /etc/openvpn
     wget -q -O - "${easyrsaRel}" | $SUDO tar xz -C /etc/openvpn && $SUDO mv /etc/openvpn/EasyRSA-${easyrsaVer} /etc/openvpn/easy-rsa
     # fix ownership
     $SUDO chown -R root:root /etc/openvpn/easy-rsa
