@@ -777,7 +777,7 @@ confOpenVPN() {
     echo "WGETTING: ${easyrsaRel}"
     echo "Moving: /etc/openvpn/EasyRSA-${easyrsaVer}"
     $SUDO ls -lha /etc/openvpn
-    wget -q -O - "${easyrsaRel}" | $SUDO tar xz -C /etc/openvpn && $SUDO mv /etc/openvpn/EasyRSA-${easyrsaVer} /etc/openvpn/easy-rsa
+    wget -q -O - "${easyrsaRel}" | $SUDO tar xz -C /etc/openvpn && $SUDO mv /etc/openvpn/EasyRSA-v${easyrsaVer} /etc/openvpn/easy-rsa
     $SUDO ls -lha /etc/openvpn
     # fix ownership
     $SUDO chown -R root:root /etc/openvpn/easy-rsa
