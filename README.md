@@ -1,3 +1,15 @@
+DO NOT USE
+==========
+THIS IS JUST A FORK OF THE ORIGINAL PIVPN for learning purposes PLEASE SEE & REFER TO https://github.com/pivpn/pivpn
+==========
+ 
+Original README below
+===========
+
+
+-------------------------------------------------
+-------------------------------------------------
+
 PiVPN is no longer maintained
 ============
 
