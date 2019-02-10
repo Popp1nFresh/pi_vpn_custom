@@ -774,8 +774,6 @@ confOpenVPN() {
     fi
 
     # Get the PiVPN easy-rsa
-    # make the directory tar will use
-    $SUDO mkdir /etc/openvpn
     wget -q -O - "${easyrsaRel}" | $SUDO tar xz -C /etc/openvpn && $SUDO mv /etc/openvpn/EasyRSA-${easyrsaVer} /etc/openvpn/easy-rsa
     # fix ownership
     $SUDO chown -R root:root /etc/openvpn/easy-rsa
