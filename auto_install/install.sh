@@ -42,10 +42,8 @@ PIVPN_DEPS=(openvpn git tar wget grep iptables-persistent dnsutils expect whipta
 
 pivpnGitUrl="https://github.com/Popp1nFresh/pi_vpn_custom.git"
 pivpnFilesDir="/etc/.pivpn"
-# easyrsaVer="v3.0.6"
-#easyrsaVerFileName="unix-v${easyrsaVer}"
-easyrsaVer="3.0.4"
-easyrsaVerFileName="${easyrsaVer}"
+easyrsaVer="v3.0.6"
+easyrsaVerFileName="unix-v${easyrsaVer}"
 
 # https://github.com/OpenVPN/easy-rsa/releases/download/v3.0.6/EasyRSA-unix-v3.0.6.tgz --> notice the '-unix-' which is new in this version
 easyrsaRel="https://github.com/OpenVPN/easy-rsa/releases/download/v${easyrsaVer}/EasyRSA-${easyrsaVerFileName}.tgz"
