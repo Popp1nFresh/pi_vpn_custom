@@ -19,6 +19,7 @@ set -e
 #   - Apply same update to the section below line ~900
 #       + https://github.com/mvo5/unattended-upgrades/releases
 #   - Update/Confirm that the Diffy-Helman pre-gen'd link is up to date
+#       + Around line 834
 #   - Confirm the 'default.txt' & 'server_config.txt' files have minimum desired versions
 
 tmpLog="/tmp/pivpn-install.log"
@@ -883,7 +884,7 @@ EOF
 }
 
 
-# TODO: Update this for unattended upgrades
+# TODO: Update path below for unattended upgrades
 confUnattendedUpgrades() {
     cd /etc/apt/apt.conf.d
 
