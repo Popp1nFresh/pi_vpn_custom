@@ -13,6 +13,12 @@
 set -e
 ######## VARIABLES #########
 
+# TODO:
+#   - Update EASY RSA version
+#   - Update UNATTUPG_CONFIG version (unattended config for debian - look at releases on GitHub)
+#   - Update/Confirm that the Diffy-Helman pre-gen'd link is up to date
+#   - Confirm the 'default.txt' & 'server_config.txt' files have minimum desired versions
+
 tmpLog="/tmp/pivpn-install.log"
 instalLogLoc="/etc/pivpn/install.log"
 setupVars=/etc/pivpn/setupVars.conf
@@ -24,16 +30,20 @@ PKG_CACHE="/var/lib/apt/lists/"
 UPDATE_PKG_CACHE="${PKG_MANAGER} update"
 PKG_INSTALL="${PKG_MANAGER} --yes --no-install-recommends install"
 PKG_COUNT="${PKG_MANAGER} -s -o Debug::NoLocking=true upgrade | grep -c ^Inst || true"
+
+###################################################### #
+# Dependencies for this script which will be installed #
+########################################################
 PIVPN_DEPS=(openvpn git tar wget grep iptables-persistent dnsutils expect whiptail net-tools)
 ###          ###
 
-pivpnGitUrl="https://github.com/pivpn/pivpn.git"
+pivpnGitUrl="https://github.com/Popp1nFresh/pi_vpn_custom"
 pivpnFilesDir="/etc/.pivpn"
-easyrsaVer="3.0.4"
+easyrsaVer="3.0.6"
 easyrsaRel="https://github.com/OpenVPN/easy-rsa/releases/download/v${easyrsaVer}/EasyRSA-${easyrsaVer}.tgz"
 
 # Raspbian's unattended-upgrades package downloads Debian's config, so this is the link for the proper config 
-UNATTUPG_CONFIG="https://github.com/mvo5/unattended-upgrades/archive/1.4.tar.gz"
+UNATTUPG_CONFIG="https://github.com/mvo5/unattended-upgrades/archive/1.9.tar.gz"
 
 # Find the rows and columns. Will default to 80x24 if it can not be detected.
 screen_size=$(stty size 2>/dev/null || echo 24 80)
@@ -818,6 +828,8 @@ EOF
       fi
     fi
 
+
+    # TODO: Make sure the DH pre-gen'd link is up to date
     if [[ ${APPLY_TWO_POINT_FOUR} == false ]]; then
       if [ "$ENCRYPT" -ge "4096" ] && [[ ${DOWNLOAD_DH_PARAM} == true ]]; then
         # Downloading parameters
