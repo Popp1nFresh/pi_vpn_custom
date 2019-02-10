@@ -16,6 +16,8 @@ set -e
 # TODO:
 #   - Update EASY RSA version
 #   - Update UNATTUPG_CONFIG version (unattended config for debian - look at releases on GitHub)
+#   - Apply same update to the section below line ~900
+#       + https://github.com/mvo5/unattended-upgrades/releases
 #   - Update/Confirm that the Diffy-Helman pre-gen'd link is up to date
 #   - Confirm the 'default.txt' & 'server_config.txt' files have minimum desired versions
 
@@ -880,6 +882,8 @@ EOF
     $SUDO sed -i "s/\(cert \/etc\/openvpn\/easy-rsa\/pki\/issued\/\).*/\1${SERVER_NAME}.crt/" /etc/openvpn/server.conf
 }
 
+
+# TODO: Update this for unattended upgrades
 confUnattendedUpgrades() {
     cd /etc/apt/apt.conf.d
 
@@ -898,8 +902,8 @@ EOT
             # Fix Raspbian config
             if [[ $PLAT == "Raspbian" ]]; then
                 wget -q -O - "$UNATTUPG_CONFIG" | $SUDO tar xz
-                $SUDO cp unattended-upgrades-1.4/data/50unattended-upgrades.Raspbian 50unattended-upgrades
-                $SUDO rm -rf unattended-upgrades-1.4
+                $SUDO cp unattended-upgrades-1.9/data/50unattended-upgrades.Raspbian 50unattended-upgrades
+                $SUDO rm -rf unattended-upgrades-1.9
             fi
 
             # Add the remaining settings for all other distributions
