@@ -21,6 +21,7 @@ set -e
 #   - Update/Confirm that the Diffy-Helman pre-gen'd link is up to date
 #       + Around line 834
 #   - Confirm the 'default.txt' & 'server_config.txt' files have minimum desired versions
+#   - Comment out the stuff in unattended upgrade START to END
 
 tmpLog="/tmp/pivpn-install.log"
 instalLogLoc="/etc/pivpn/install.log"
@@ -894,7 +895,31 @@ EOF
 
 # TODO: Update path below for unattended upgrades
 confUnattendedUpgrades() {
+
+
     cd /etc/apt/apt.conf.d
+
+    # TODO: START - comment this out
+    # Must be root to install
+    # echo ":::"
+    # if [[ $EUID -eq 0 ]];then
+    #     echo "::: You are root."
+    # else
+    #     echo "::: sudo will be used for the install."
+    #     # Check if it is actually installed
+    #     # If it isn't, exit because the install cannot complete
+    #     if [[ $(dpkg-query -s sudo) ]];then
+    #         export SUDO="sudo"
+    #         export SUDOE="sudo -E"
+    #     else
+    #         echo "::: Please install sudo or run this as root."
+    #         exit 1
+    #     fi
+    # fi
+    # PLAT="Raspbian"
+    # UNATTUPG_CONFIG="https://github.com/mvo5/unattended-upgrades/archive/1.9.tar.gz"
+    # UNATTUPG="unattended-upgrades"
+    # TODO: END - comment this out
 
     if [[ $UNATTUPG == "unattended-upgrades" ]]; then
         $SUDO apt-get --yes --quiet --no-install-recommends install "$UNATTUPG" > /dev/null & spinner $!
